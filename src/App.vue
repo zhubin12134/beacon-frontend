@@ -127,8 +127,14 @@ function applyDashboard(payload) {
 function switchView(view) {
   activeView.value = view;
   nextTick(() => {
+    if (view === "overview") {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      return;
+    }
     const map = {
-      overview: null,
       sites: sitePanelRef.value,
       alerts: alertPanelRef.value,
       custom: customPanelRef.value,
